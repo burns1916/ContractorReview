@@ -1,4 +1,5 @@
 class ContractorsController < ApplicationController
+    
     def new
         @ccontractor = Contractor.new
     end
