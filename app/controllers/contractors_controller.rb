@@ -14,7 +14,7 @@ class ContractorsController < ApplicationController
 
     private
 
-    def client_params
+    def contractor_params
         params.require(:contractor).permit(:business_name, :license_number, user_attributes: [:id, :email, :password])
     end
 end
