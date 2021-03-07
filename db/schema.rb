@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_215937) do
+ActiveRecord::Schema.define(version: 2021_03_07_221853) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.string "job_name"
+    t.text "job_description"
+    t.datetime "appointment_time"
+    t.integer "client_id"
+    t.integer "contractor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
