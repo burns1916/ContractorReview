@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-    belongs_to :meta polymorphic: true
+    belongs_to :meta, polymorphic: true
 end
