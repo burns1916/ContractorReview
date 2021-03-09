@@ -1,7 +1,7 @@
 class ContractorsController < ApplicationController
     
     def new
-        @ccontractor = Contractor.new
+        @contractor = Contractor.new
     end
 
     def create
@@ -11,6 +11,10 @@ class ContractorsController < ApplicationController
             else
                 render :new
             end
+    end
+
+    def show
+
     end
 
     private
