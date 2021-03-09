@@ -5,6 +5,7 @@ class ClientsController < ApplicationController
     end
 
     def create
+        raise params.inspect
         @client = Client.new(client_params)
             if @client.save
                 redirect_to :show
