@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  root 'welcome#home'
+  get '/signup' => 'welcome#signup'
+  get '/contractor/signup' => 'contractors#new'
+  get '/client/signup' => 'clients#new'
+
   resources :reviews
   resources :appointments
   resources :contractors
