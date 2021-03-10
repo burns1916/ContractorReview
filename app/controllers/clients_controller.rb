@@ -9,10 +9,7 @@ class ClientsController < ApplicationController
     def create
 
         @client = Client.new(client_params)
-
             if @client.save
-                @client.user.meta = @client
-       
                 redirect_to @client
             else
                 render :new
