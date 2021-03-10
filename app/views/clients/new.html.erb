@@ -1,7 +1,7 @@
 <%= form_for(@client) do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %><br>
-    <%= f.fields_for :users do |user| %>
+    <%= f.fields_for :user do |user| %>
         <%= render partial: 'users/form', locals: {user: user} %>
     <% end %>
     <%= f.submit "Sign Up" %>
