@@ -1,3 +1,7 @@
 <h1>Welcome to the Contractor Review App!</h1>
-<%= link_to "Sign Up", signup_path %>
+<%= link_to "Sign Up", signup_path %><br>
+<%= form_tag("/logout", method: 'delete' ) do %>
+    <%= submit_tag "Log Out" %>
+<% end %>
+
 

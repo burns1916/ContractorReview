@@ -1,3 +1,4 @@
+require 'pry'
 class ContractorsController < ApplicationController
     
     def new
@@ -8,9 +9,10 @@ class ContractorsController < ApplicationController
     def create
 
         @contractor = Contractor.new(contractor_params)
-
             if @contractor.save
-                redirect_to @contractor
+                @user = @contractor.user
+                session[:user_id] = @user.id
+                redirect_to '/'
             else
                 render :new
             end
@@ -23,6 +25,6 @@ class ContractorsController < ApplicationController
     private
 
     def contractor_params
-        params.require(:contractor).permit(:business_name, :license_number, user_attributes: [:id, :email, :password])
+        params.require(:contractor).permit(:business_name, :license_number, { user_attributes: [:id, :email, :password] } )
     end
 end

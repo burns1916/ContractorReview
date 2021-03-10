@@ -10,7 +10,9 @@ class ClientsController < ApplicationController
 
         @client = Client.new(client_params)
             if @client.save
-                redirect_to @client
+                @user = @client.user
+                session[:user_id] = @user.id
+                redirect_to '/'
             else
                 render :new
             end

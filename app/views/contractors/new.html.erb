@@ -3,7 +3,7 @@
     <%= f.text_field :business_name %><br>
     <%= f.label :license_number %>
     <%= f.number_field :license_number %><br>
-    <%= f.fields_for :users do |user| %>
+    <%= f.fields_for :user do |user| %>
         <%= render partial: 'users/form', locals: {user: user} %>
     <% end %>
     <%= f.submit "Sign Up" %>
