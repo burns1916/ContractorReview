@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :require_login
+    helper_method :current_user, :logged_in?
+
+    private
 
     def current_user
-        if session[:user_id].present?
-            user = User.find_by(:id => session[:user_id])
-        end
+        @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
     end
 
     def require_login
@@ -12,5 +12,9 @@ class ApplicationController < ActionController::Base
             redirect_to root_url
         end
     end
-    
+
+    def logged_in?
+        !!current_user
+    end
+
 end

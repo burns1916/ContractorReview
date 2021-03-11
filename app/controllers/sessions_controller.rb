@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
             session[:user_id] = user.id
             redirect_to '/'
         else
+            flash[:message] = "Login information was incorrect."
             render :new
         end
     end

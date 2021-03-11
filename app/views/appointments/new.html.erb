@@ -1,3 +1,9 @@
+<% if @appointment.errors.any? %>
+  <% @appointment.errors.full_messages.each do |message|%>
+  <h3><%= message %> </h3>
+  <%end%>
+<%end%>
+
 <%= form_for (@appointment) do |f| %>
 
     <%= f.label :contractor_id, "Contractor Name" %><br>

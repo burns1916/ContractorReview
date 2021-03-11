@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   post '/client/create' => 'clients#create'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
-  delete '/logout' => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy'
+
 
   resources :reviews
   resources :appointments

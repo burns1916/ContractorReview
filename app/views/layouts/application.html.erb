@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+<% if logged_in? %>
+  <%= link_to "Request an Appointment", new_appointment_path %> | 
+  <%= link_to "Write a Review", new_review_path %>
 
+  <%= button_to("Logout", logout_path, method: :delete) %>
+<% else %>
+  <%= link_to "Sign Up", signup_path %> | 
+  <%= link_to "Login", login_path %><br>
+<% end %>
   </head>
 
   <body>
