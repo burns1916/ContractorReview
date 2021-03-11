@@ -12,8 +12,14 @@ Rails.application.routes.draw do
 
   resources :reviews
   resources :appointments
-  resources :contractors
-  resources :clients
+  resources :contractors do
+    resources :appointments, only: [:new, :create, :index]
+    resources :reviews, only: [:index]
+  end
+  resources :clients do
+    resources :appointments, only: [:new, :create, :index]
+    resources :reviews, only: [:new, :create, :index]
+  end
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
