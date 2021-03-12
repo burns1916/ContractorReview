@@ -2,6 +2,16 @@ require 'pry'
 class AppointmentsController < ApplicationController
     before_action :require_login
 
+    def index
+        if params[:client_id] && @client = Client.find_by_id(params[:client_id])
+            @appointments = @client.appoinmtments
+        elsif params[:contractor_id] && @contractor = Contractor.find_by_id(params[:contractor_id])
+            @appointments = @contractor.appointments
+        else
+            flash[:message] = "Appointment doesn't exist" if params[:client_id] || params[:contractor_id]
+            @appointments = Appointment.all
+    end
+
     def new
         @appointment = Appointment.new
     end
