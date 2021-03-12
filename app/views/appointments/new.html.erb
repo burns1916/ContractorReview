@@ -7,11 +7,7 @@
 <%= form_for (@appointment) do |f| %>
 
     <%= f.label :contractor_id, "Contractor Name" %><br>
-    <% Contractor.all.each do |contract| %>
-        <%= f.radio_button :contractor_id, contract.id %>
-        <%= f.label :contractor_id, contract.business_name %>
-        <br>
-    <% end %>
+    <%= f.collection_select :contractor_id, Contractor.all, :id, :business_name %>
         <br>
     <%= f.label :job_name, "Job Name" %>
     <%= f.text_field :job_name %><br>

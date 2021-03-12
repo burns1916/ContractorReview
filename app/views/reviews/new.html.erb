@@ -7,13 +7,7 @@
 <%= form_for(@review) do |f| %>
     
     <%= f.label :appointment_id, "My Appointments" %>
-    <% Appointment.all.each do |appointment| %>
-        <% if appointment.client.id == current_user.meta.id %>
-            <%= f.radio_button :appointment_id, appointment.id %>
-            <%= f.label :appointment_id, appointment.job_name %>
-        <% end %>
-        <br>
-    <% end %><br>
+    <%= f.collection_select :appointment_id, Appointment.all, :id, :job_name %><br>
 
     <%= f.label :rating, "Rate the Job 1-10" %>
     <%= f.number_field :rating %><br>

@@ -13,7 +13,12 @@ class ReviewsController < ApplicationController
     end
 
     def new
-        @review = Review.new
+        if params[:appointment_id] && @appointment.find_by_id(params[:appointment_id])
+            @review = @appointment.reviews.build
+        else
+            @error = flash[:message] = "That appointment doesn't exist" if params[:appointment_id]
+            @review = Review.new
+        end
     end
 
     def create
