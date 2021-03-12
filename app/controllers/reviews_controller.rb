@@ -1,14 +1,19 @@
 class ReviewsController < ApplicationController
     before_action :require_login
 
-    def new
+    def index
         if params[:client_id] && @client = Client.find_by_id(params[:client_id])
             @reviews = @client.reviews
         elsif params[:contractor_id] && @contractor = Contractor.find_by_id(params[:contractor_id])
             @reviews = @contractor.reviews
         else
-            flash[:message] = "Client and/or Contractor has no Reviews" if params[:client_id] || params[:contractor_id]
-            @reviewss = Review.all
+            @error = flash[:message] = "Client and/or Contractor has no Reviews" if params[:client_id] || params[:contractor_id]
+            @reviews = Review.all
+        end
+    end
+
+    def new
+        @review = Review.new
     end
 
     def create

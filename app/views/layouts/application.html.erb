@@ -17,9 +17,10 @@
   </head>
 
   <body>
-    <%= if flash[:message] %>
+    <% if flash[:message] %>
       <%= flash[:message] %>
     <% end %>
+    <%= @error %>
     <%= yield %>
   </body>
 </html>
