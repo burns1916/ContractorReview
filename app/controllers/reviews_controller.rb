@@ -2,7 +2,13 @@ class ReviewsController < ApplicationController
     before_action :require_login
 
     def new
-        @review = Review.new
+        if params[:client_id] && @client = Client.find_by_id(params[:client_id])
+            @reviews = @client.reviews
+        elsif params[:contractor_id] && @contractor = Contractor.find_by_id(params[:contractor_id])
+            @reviews = @contractor.reviews
+        else
+            flash[:message] = "Client and/or Contractor has no Reviews" if params[:client_id] || params[:contractor_id]
+            @reviewss = Review.all
     end
 
     def create
@@ -10,7 +16,7 @@ class ReviewsController < ApplicationController
             if @review.save
                 redirect_to @review
             else
-                render :new
+                render :new 
             end
     end
 

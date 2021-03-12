@@ -8,7 +8,7 @@ class AppointmentsController < ApplicationController
         elsif params[:contractor_id] && @contractor = Contractor.find_by_id(params[:contractor_id])
             @appointments = @contractor.appointments
         else
-            flash[:message] = "Appointment doesn't exist" if params[:client_id] || params[:contractor_id]
+            flash[:message] = "Client and/or Contractor has no Appointments" if params[:client_id] || params[:contractor_id]
             @appointments = Appointment.all
     end
 
