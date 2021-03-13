@@ -1,3 +1,5 @@
+<h1> Request an Appontment from a Contractor</h1>
+
 <% if @appointment.errors.any? %>
   <% @appointment.errors.full_messages.each do |message|%>
   <h3><%= message %> </h3>
@@ -6,8 +8,8 @@
 
 <%= form_for (@appointment) do |f| %>
 
-    <%= f.label :contractor_id, "Contractor Name" %><br>
-    <%= f.collection_select :contractor_id, Contractor.all, :id, :business_name %>
+    <%= f.label :contractor_id, "Contractor Name" %>
+    <%= f.collection_select :contractor_id, Contractor.all, :id, :business_name %><br>
         <br>
     <%= f.label :job_name, "Job Name" %>
     <%= f.text_field :job_name %><br>

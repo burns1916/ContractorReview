@@ -1,10 +1,16 @@
+<% if @appointment %>
+<h1>Write a Review for <%= @appointment.job_name %></h1>
+<% else %>
+<h1>Write a Review!</h1>
+<% end %>
+
 <% if @review.errors.any? %>
   <% @review.errors.full_messages.each do |message|%>
   <h3><%= message %> </h3>
   <%end%>
 <%end%>
 
-<%= form_for(@review) do |f| %>
+<%= form_for([@appointment, @review]) do |f| %>
     
     <%= f.label :appointment_id, "My Appointments" %>
     <%= f.collection_select :appointment_id, Appointment.all, :id, :job_name %><br>

@@ -1,0 +1,13 @@
+<h1><%= @client.name %>'s Appointments </h1>
+<% @appointments.each do |appointment| %>
+    <% if appointment.client_id = @client.id %>
+    <ul>
+        <li><h2><%= appointment.job_name %></h2></li>
+        <h4><%= appointment.job_description %></h4>
+        <h4><%= appointment.appointment_time %></h4>
+        <%= link_to "Write A Review", new_client_appointment_review_path(@client.id, appointment.id) %>
+        <br>
+        <br>
+    </ul>
+    <% end %>
+<% end %>

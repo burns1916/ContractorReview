@@ -1,2 +1,4 @@
-<%= link_to "See all Appointments", client_appointments_path(@client) %>
+<h1>Welcome <%= @client.name %></h1>
+
+<%= link_to "See all Appointments", client_appointments_path(@client) %><br>
 <%= link_to "See all Reviews", client_reviews_path(@client) %>

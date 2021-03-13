@@ -11,13 +11,17 @@ Rails.application.routes.draw do
 
 
   resources :reviews
-  resources :appointments
+  resources :appointments do
+    resources :reviews, only: [:new, :create, :index]
+  end
   resources :contractors do
     resources :appointments, only: [:new, :create, :index]
     resources :reviews, only: [:index]
   end
   resources :clients do
-    resources :appointments, only: [:new, :create, :index]
+    resources :appointments, only: [:new, :create, :index] do
+      resources :reviews, only: [:new, :create, :index]
+    end
     resources :reviews, only: [:new, :create, :index]
   end
   resources :users

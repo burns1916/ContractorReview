@@ -13,8 +13,9 @@ class ReviewsController < ApplicationController
     end
 
     def new
-        if params[:appointment_id] && @appointment.find_by_id(params[:appointment_id])
-            @review = @appointment.reviews.build
+        @appointment = Appointment.find_by_id(params[:appointment_id])
+        if params[:appointment_id] && Appointment.find_by_id(params[:appointment_id])
+            @review = @appointment.build_review
         else
             @error = flash[:message] = "That appointment doesn't exist" if params[:appointment_id]
             @review = Review.new
@@ -31,7 +32,7 @@ class ReviewsController < ApplicationController
     end
 
     def show
-
+        @review = Review.find_by_id(params[:id])
     end
 
     private

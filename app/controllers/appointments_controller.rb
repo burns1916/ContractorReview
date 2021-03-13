@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
 
     def index
         if params[:client_id] && @client = Client.find_by_id(params[:client_id])
-            @appointments = @client.appoinmtments
+            @appointments = @client.appointments
         elsif params[:contractor_id] && @contractor = Contractor.find_by_id(params[:contractor_id])
             @appointments = @contractor.appointments
         else
