@@ -14,6 +14,11 @@
   <%= link_to "Sign Up", signup_path %> | 
   <%= link_to "Login", login_path %><br>
 <% end %>
+<% if client_user %>
+  <%= link_to "Home", client_path(client_user) %>
+<% elsif contractor_user %>
+  <%= link_to "Home", contractor_path(contrator_user) %>
+<% end %>
 <br>
 <br>
   </head>

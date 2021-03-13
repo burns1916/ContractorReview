@@ -8,16 +8,16 @@
 
 <%= form_for (@appointment) do |f| %>
 
-    <%= f.label :contractor_id, "Contractor Name" %>
+    <strong><%= f.label :contractor_id, "Contractor Name" %></strong>
     <%= f.collection_select :contractor_id, Contractor.all, :id, :business_name %><br>
         <br>
-    <%= f.label :job_name, "Job Name" %>
+    <strong><%= f.label :job_name, "Job Name" %></strong>
     <%= f.text_field :job_name %><br>
         <br>
-    <%= f.label :job_description, "Job Description" %>
+    <strong><%= f.label :job_description, "Job Description" %></strong>
     <%= f.text_field :job_description %><br>
         <br>
-    <%= f.label :appointment_time, "Appointment Time" %>
+    <strong><%= f.label :appointment_time, "Appointment Time" %></strong>
     <%= f.datetime_field(:appointment_time, placeholder: "yyyy-mm-dd", min: Date.today) %><br>
         <br>
     <%= f.submit %>

@@ -1,4 +1,7 @@
 <%  @reviews.each do |review|  %>
-<%= review.rating %><br>
-<%= review.content %><br>
+    <ul>
+    <li><h3>Project Name: <%= review.appointment.job_name %></h3>
+        <strong>Contractor Rating:</strong> <%= review.rating %><br>
+        <strong>Review:</strong> <%= review.content %><br>
+    </ul>
 <% end %>
