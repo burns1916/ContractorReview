@@ -1,5 +1,5 @@
-<% if @appointment %>
-<h1>Write a Review for <%= @appointment.job_name %></h1>
+<% if @review.appointment %>
+<h1>Write a Review for <%= @review.appointment.job_name %></h1>
 <% else %>
 <h1>Write a Review!</h1>
 <% end %>
@@ -10,11 +10,15 @@
   <%end%>
 <%end%>
 
-<%= form_for([@appointment, @review]) do |f| %>
-    
-    <strong><%= f.label :appointment_id, "Project Name" %><strong>
-    <%= f.collection_select :appointment_id, Appointment.all, :id, :job_name %><br>
+<%= form_for([@review.appointment, @review]) do |f| %>
 
+    <% if !@review.appointment %>
+      <strong><%= f.label :appointment_id, "Project Name" %><strong>
+      <%= f.collection_select :appointment_id, Appointment.all, :id, :job_name %><br>
+    <% else %>
+      <%= f.hidden_field :appointment_id %>
+    <% end %>
+    
     <strong><%= f.label :rating, "Rate the Job 1-10" %></strong>
     <%= f.number_field :rating %><br>
 

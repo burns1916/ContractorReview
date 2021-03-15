@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :logged_in?, :client_user
+    helper_method :current_user, :logged_in?, :client_user, :contractor_user
 
     private
 
@@ -18,13 +18,13 @@ class ApplicationController < ActionController::Base
     end
 
     def client_user
-        if current_user.meta_type == "Client"
+        if current_user && current_user.meta_type == "Client"
             @client = Client.find_by(:id => current_user.meta.id)
         end
     end
 
     def contractor_user
-        if current_user.meta_tags == "Contractor"
+        if current_user && current_user.meta_tags == "Contractor"
             @contractor = Contractor.find_by(:id => current_user.meta.id)
         end
     end
