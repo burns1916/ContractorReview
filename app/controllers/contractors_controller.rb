@@ -1,6 +1,10 @@
 require 'pry'
 class ContractorsController < ApplicationController
     
+    def index
+        @contractors = Contractor.all
+    end
+
     def new
         @contractor = Contractor.new
         @contractor.build_user

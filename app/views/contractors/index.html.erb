@@ -1,0 +1,7 @@
+<h1> List of All Contractors </h1>
+<p>Select a contractor to check out their client reviews</p>
+<% @contractors.each do |contractor| %>
+    <ul>
+    <li><%= link_to "#{contractor.business_name}", contractor_reviews_path(contractor) %><br></li>
+    </ul>
+<% end %>
