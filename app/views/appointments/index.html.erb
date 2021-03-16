@@ -3,6 +3,8 @@
     <% if appointment.client_id = @client.id %>
     <ul>
         <li><h3>Project Name: <%= appointment.job_name %></h3></li>
+        <strong>Contractor Business Name: <%= appointment.contractor.business_name %><br>
+        <strong>Contractor License Number: <%= appointment.contractor.license_number %><br>
         <strong>Project Description: </strong><%= appointment.job_description %><br>
         <strong>Appointment Time: </strong><%= appointment.appointment_time %><br>
         <%= link_to "Write A Review", new_client_appointment_review_path(@client.id, appointment.id) %>
