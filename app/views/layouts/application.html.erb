@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <br>
+    <% if client_user %>
+      <%= link_to "Home", client_path(client_user) %> |
+    <% elsif contractor_user %>
+      <%= link_to "Home", contractor_path(contractor_user) %> |
+    <% end %>
 <% if logged_in? %>
+  <%= link_to "View Contractors", contractors_path %> |
   <%= link_to "Request an Appointment", new_appointment_path %> | 
   <%= link_to "Write a Review", new_review_path %>
-
+  <br>
+  <br>
   <%= button_to("Logout", logout_path, method: :delete) %>
 <% else %>
   <%= link_to "Sign Up", signup_path %> | 
   <%= link_to "Login", login_path %><br>
 <% end %>
-<% if client_user %>
-  <%= link_to "Home", client_path(client_user) %>
-<% elsif contractor_user %>
-  <%= link_to "Home", contractor_path(contrator_user) %>
-<% end %>
+
 <br>
 <br>
   </head>

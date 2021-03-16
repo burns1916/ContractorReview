@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     end
 
     def contractor_user
-        if current_user && current_user.meta_tags == "Contractor"
+        if current_user && current_user.meta_type == "Contractor"
             @contractor = Contractor.find_by(:id => current_user.meta.id)
         end
     end
