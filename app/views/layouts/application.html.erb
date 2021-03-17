@@ -6,15 +6,15 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <br>
-    <% if client_user %>
+    <% if client_user && logged_in? %>
       <%= link_to "Home", client_path(client_user) %> |
+      <%= link_to "Request an Appointment", new_appointment_path %> | 
+      <%= link_to "Write a Review", new_review_path %> |
     <% elsif contractor_user %>
       <%= link_to "Home", contractor_path(contractor_user) %> |
     <% end %>
 <% if logged_in? %>
   <%= link_to "View Contractors", contractors_path %> |
-  <%= link_to "Request an Appointment", new_appointment_path %> | 
-  <%= link_to "Write a Review", new_review_path %>
   <br>
   <br>
   <%= button_to("Logout", logout_path, method: :delete) %>
