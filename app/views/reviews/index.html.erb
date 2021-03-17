@@ -7,5 +7,6 @@
         <%= @contractor.business_name %><br>
         <strong>Contractor Rating:</strong> <%= review.rating %><br>
         <strong>Review:</strong> <%= review.content %><br>
+        <%= link_to "Request an Appointment", new_contractor_appointment_path(@contractor) %>
     </ul>
 <% end %>

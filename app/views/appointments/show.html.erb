@@ -1,4 +1,7 @@
-<h1>Appoinment Requested </h1>
+<h1>Appointment Requested </h1>
+<strong>Contractor: </strong> <%= @appointment.contractor.business_name %><br>
+<strong>Contractor License: </strong> <%= @appointment.contractor.license_number %><br>
+<br>
 <strong>Job Name: </strong><%= @appointment.job_name %><br>
 <strong>Job Description: </strong><%= @appointment.job_description %></br>
 <strong>Appointment Time: </strong><%= @appointment.appointment_time %></br>
