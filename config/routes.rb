@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  match '/auth/:github/callback', to: 'sessions#create', via: [:get, :post]
 
 
   resources :reviews
@@ -15,14 +16,14 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create, :index]
   end
   resources :contractors do
-    resources :appointments, only: [:new, :create, :index]
-    resources :reviews, only: [:index]
+    resources :appointments, only: [:new, :create, :index] do
+      resources :reviews, only: [:index]
+    end
   end
   resources :clients do
     resources :appointments, only: [:new, :create, :index] do
       resources :reviews, only: [:new, :create, :index]
     end
-    resources :reviews, only: [:new, :create, :index]
   end
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
