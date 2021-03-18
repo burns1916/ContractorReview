@@ -8,13 +8,17 @@
     <br>
     <% if client_user && logged_in? %>
       <%= link_to "Home", client_path(client_user) %> |
+      <%= link_to "My Appointments", client_appointments_path(client_user) %> |
+      <%= link_to "My Reviews", client_reviews_path(client_user) %> |
       <%= link_to "Request an Appointment", new_appointment_path %> | 
-      <%= link_to "Write a Review", new_review_path %> |
+      <%= link_to "Write a Review", new_review_path %> | 
     <% elsif contractor_user %>
-      <%= link_to "Home", contractor_path(contractor_user) %> |
+      <%= link_to "Home", contractor_path(contractor_user) %> | 
+      <%= link_to "My Appointments", contractor_appointments_path(contractor_user)%> | 
+      <%= link_to "My Reviews", contractor_reviews_path(contractor_user) %> | 
     <% end %>
 <% if logged_in? %>
-  <%= link_to "View Contractors", contractors_path %> |
+  <%= link_to "View Contractors", contractors_path %> | 
   <br>
   <br>
   <%= button_to("Logout", logout_path, method: :delete) %>

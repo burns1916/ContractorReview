@@ -1,3 +1,8 @@
+<% if @client.errors.any? %>
+<% @client.errors.full_messages.each do |message|%>
+<h3><%= message %> </h3>
+<%end%>
+<%end%>
 <%= form_for(@client) do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %><br>

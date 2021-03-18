@@ -14,16 +14,16 @@
 
     <% if !@review.appointment %>
       <strong><%= f.label :appointment_id, "Project Name" %><strong>
-      <%= f.collection_select :appointment_id, Appointment.all, :id, :job_name %><br>
+      <%= f.collection_select :appointment_id, Appointment.where(:client_id => client_user), :id, :job_name %><br>
     <% else %>
       <%= f.hidden_field :appointment_id %>
     <% end %>
-    
+    <br>
     <strong><%= f.label :rating, "Rate the Job 1-10" %></strong>
     <%= f.number_field :rating %><br>
-
+    <br>
     <strong><%= f.label :content, "Why did you give this Rating" %></strong>
     <%= f.text_field :content %><br>
-
+    <br>
     <%= f.submit %>
 <% end %>

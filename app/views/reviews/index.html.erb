@@ -1,12 +1,10 @@
 <h1>Reviews</h1>
 <%  @reviews.each do |review|  %>
     <ul>
-    <li><h3>Project Name: <%= review.appointment.job_name %></h3>
-        <strong>Contractor Business Name:</strong> 
-        <% @contractor = Contractor.find_by(:id => review.appointment.contractor_id) %>
-        <%= @contractor.business_name %><br>
-        <strong>Contractor Rating:</strong> <%= review.rating %><br>
+        <li>
+        <h3>Project Name: <%= review.appointment.job_name %></h3>
+        <strong>Contractor Rating:</strong> <%= review.rating %>/10<br>
         <strong>Review:</strong> <%= review.content %><br>
-        <%= link_to "Request an Appointment", new_contractor_appointment_path(@contractor) %>
+        </li>
     </ul>
 <% end %>

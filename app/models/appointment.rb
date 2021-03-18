@@ -4,6 +4,7 @@ class Appointment < ApplicationRecord
     has_one :review
 
     validates :appointment_time, uniqueness: { scope: :contractor_id }
+    validates :appointment_time, presence: true
     validates :job_name, presence: true
     validates :job_description, presence: true
 

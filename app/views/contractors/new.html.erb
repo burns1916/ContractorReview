@@ -1,3 +1,9 @@
+<% if @contractor.errors.any? %>
+<% @contractor.errors.full_messages.each do |message|%>
+<h3><%= message %> </h3>
+<%end%>
+<%end%>
+
 <%= form_for(@contractor) do |f| %>
     <%= f.label :business_name %>
     <%= f.text_field :business_name %><br>

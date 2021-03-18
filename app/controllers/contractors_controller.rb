@@ -16,7 +16,7 @@ class ContractorsController < ApplicationController
             if @contractor.save
                 @user = @contractor.user
                 session[:user_id] = @user.id
-                redirect_to '/'
+                redirect_to @contractor
             else
                 render :new
             end
