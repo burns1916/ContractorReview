@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  get '/auth/google_oauth2/callback', to: 'sessions#googlelogin'
+  match "/auth/google_oauth2/callback" => 'sessions#googlelogin', via: [:get, :post]
 
 
   resources :reviews
