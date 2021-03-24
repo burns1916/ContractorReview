@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
         end
     end
 
-    def githublogin
+    def googlelogin
      binding.pry
     end
 
