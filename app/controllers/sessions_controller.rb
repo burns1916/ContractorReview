@@ -22,11 +22,26 @@ class SessionsController < ApplicationController
     end
 
     def googlelogin
-     binding.pry
+        if auth_type = "client"
+            @user = User.find_or_create_by(:email => auth["info"]["email"]) do |user|
+                user.password = SecureRandom.hex(10)
+                user.meta_type = "Client"
+            end
+                if @user.save
+                    session[:user_id] = @user.id
+                    redirect_to @user
+                else
+                    render :new
+                end
+        end
     end
 
     def auth
-        request.env['omniauth.auth']
+        request.env["omniauth.auth"]
+    end
+
+    def auth_type
+        request.env["omniauth.params"]["user"]
     end
 
     def destroy
