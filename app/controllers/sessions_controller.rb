@@ -1,6 +1,6 @@
 require 'pry'
 class SessionsController < ApplicationController
-
+    after_create :client_persist
 
     def new
         @user = User.new
@@ -25,11 +25,12 @@ class SessionsController < ApplicationController
         if auth_type = "client"
             @user = User.find_or_create_by(:email => auth["info"]["email"]) do |user|
                 user.password = SecureRandom.hex(10)
-                user.meta_type = "Client"
+                binding.pry
             end
                 if @user.save
+                    binding.pry
                     session[:user_id] = @user.id
-                    redirect_to @user
+                    redirect_to client_path(@user.meta_id)
                 else
                     render :new
                 end
