@@ -15,7 +15,12 @@ class ReviewsController < ApplicationController
     def new
         @appointment = Appointment.find_by_id(params[:appointment_id])
         if params[:appointment_id] && Appointment.find_by_id(params[:appointment_id])
-            @review = @appointment.build_review
+            if @appointment.review
+                flash[:message] = "You already reviewed this appointment"
+                redirect_to @appointment.review
+            else
+                @review = @appointment.build_review
+            end
         else
             @error = flash[:message] = "That appointment doesn't exist" if params[:appointment_id]
             @review = Review.new
@@ -23,12 +28,18 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        @review = Review.new(review_params)
+        @appointment = Appointment.find_by(params[:appointment_id])
+        if @appointment.review
+            flash[:message] = "You already reviewed this appointment"
+            redirect_to @appointment.review
+        else
+            @review = Review.new(review_params)
             if @review.save
                 redirect_to @review
             else
                 render :new 
             end
+        end
     end
 
     def show

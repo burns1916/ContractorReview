@@ -1,3 +1,5 @@
+
+
 <h1>Login</h1>
     <%= form_for :user do |f| %>
         <%= f.label :email %><br>
@@ -6,3 +8,6 @@
         <%= f.password_field :password %><br>
         <%= f.submit "Login" %>
     <% end %>
+
+    <%= link_to "Login with google as Client", "/auth/google_oauth2?user=client", method: :post %><br>
+    <%= link_to "Login with google as Contractor", "/auth/google_oauth2?user=contractor", method: :post %>

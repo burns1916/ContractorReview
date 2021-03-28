@@ -22,20 +22,41 @@ class SessionsController < ApplicationController
 
     def googlelogin
         if auth_type == "client"
-            @user = User.find_or_create_by(:email => auth["info"]["email"]) do |user|
-                user.password = SecureRandom.hex(10)
-                @client = Client.new(:name => auth["info"]["name"])
-                @client.save
-                user.meta = @client
-            end
-                if @user.save
+            if @user= User.find_by(:email => auth["info"]["email"]) 
+                if @user.meta_type == "Client"
+                    @client = @user.meta
                     session[:user_id] = @user.id
                     redirect_to @client
                 else
+                    flash[:message] = "You are not a Client"
                     render :new
                 end
+            else 
+                @user = User.create(:email => auth["info"]["email"]) do |user|
+                    user.password = SecureRandom.hex(10)
+                    @client = Client.new(:name => auth["info"]["name"])
+                    @client.save
+                    user.meta = @client
+                end
+                    if @user.save
+                        session[:user_id] = @user.id
+                        redirect_to @client
+                    else
+                        render :new
+                    end
+            end
         elsif auth_type == "contractor"
-                @user = User.find_or_create_by(:email => auth["info"]["email"]) do |user|
+            if @user= User.find_by(:email => auth["info"]["email"])
+                if @user.meta_type == "Contractor"
+                    @contractor = @user.meta
+                    session[:user_id] = @user.id
+                    redirect_to @contractor
+                else
+                    flash[:message] = "You are not a Contractor"
+                    render :new
+                end
+            else
+                @user = User.create(:email => auth["info"]["email"]) do |user|
                     user.password = SecureRandom.hex(10)
                     @contractor = Contractor.new
                     @contractor.save
@@ -48,6 +69,7 @@ class SessionsController < ApplicationController
                     else
                         render :new
                     end
+            end
         end
     end
 
