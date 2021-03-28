@@ -28,8 +28,8 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        @appointment = Appointment.find_by(params[:appointment_id])
-        if @appointment.review
+        @appointment = Appointment.find_by_id(params[:review][:appointment_id])
+        if @appointment.review != nil
             flash[:message] = "You already reviewed this appointment"
             redirect_to @appointment.review
         else

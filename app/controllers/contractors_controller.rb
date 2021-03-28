@@ -23,7 +23,6 @@ class ContractorsController < ApplicationController
 
     def update
         @contractor = Contractor.find(params[:id])
-        binding.pry
         @contractor.update!(:business_name => params[:contractor][:business_name], :license_number => params[:contractor][:license_number])
         redirect_to @contractor
     end

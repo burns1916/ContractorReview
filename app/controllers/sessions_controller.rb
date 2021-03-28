@@ -60,7 +60,6 @@ class SessionsController < ApplicationController
                     user.password = SecureRandom.hex(10)
                     @contractor = Contractor.new
                     @contractor.save
-                    binding.pry
                     user.meta = @contractor
                 end
                     if @user.save
