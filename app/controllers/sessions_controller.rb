@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     end
 
     def googlelogin
-        if auth_type = "client"
+        if auth_type == "client"
             @user = User.find_or_create_by(:email => auth["info"]["email"]) do |user|
                 user.password = SecureRandom.hex(10)
                 @client = Client.new(:name => auth["info"]["name"])
@@ -34,11 +34,12 @@ class SessionsController < ApplicationController
                 else
                     render :new
                 end
-            elsif auth_type = "contractor"
+        elsif auth_type == "contractor"
                 @user = User.find_or_create_by(:email => auth["info"]["email"]) do |user|
                     user.password = SecureRandom.hex(10)
                     @contractor = Contractor.new
                     @contractor.save
+                    binding.pry
                     user.meta = @contractor
                 end
                     if @user.save
@@ -47,7 +48,6 @@ class SessionsController < ApplicationController
                     else
                         render :new
                     end
-            end
         end
     end
 

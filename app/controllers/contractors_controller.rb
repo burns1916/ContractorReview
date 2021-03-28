@@ -11,7 +11,6 @@ class ContractorsController < ApplicationController
     end
 
     def create
-
         @contractor = Contractor.new(contractor_params)
             if @contractor.save
                 @user = @contractor.user
@@ -20,6 +19,13 @@ class ContractorsController < ApplicationController
             else
                 render :new
             end
+    end
+
+    def update
+        @contractor = Contractor.find(params[:id])
+        binding.pry
+        @contractor.update!(:business_name => params[:contractor][:business_name], :license_number => params[:contractor][:license_number])
+        redirect_to @contractor
     end
 
     def show

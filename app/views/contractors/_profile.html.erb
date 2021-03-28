@@ -1,0 +1,7 @@
+<%= form_for(@contractor) do |f| %>
+    <%= f.label :business_name %>
+    <%= f.text_field :business_name %><br>
+    <%= f.label :license_number %>
+    <%= f.number_field :license_number %><br>
+    <%= f.submit %>
+<% end %>

@@ -1,1 +1,6 @@
 <h1>Welcome, <%= @contractor.business_name %></h1>
+
+<% if @contractor.business_name == nil || @contractor.license_number == nil %>
+<h3>Finish Filling out your profile!!</h3>
+    <%= render partial: 'profile' %>
+<% end %>
