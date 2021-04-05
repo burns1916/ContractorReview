@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
     before_action :require_login
 
+
     def index
         if params[:client_id] && @client = Client.find_by_id(params[:client_id])
             @reviews = @client.reviews
@@ -9,6 +10,11 @@ class ReviewsController < ApplicationController
         else
             @error = flash[:message] = "Client and/or Contractor has no Reviews" if params[:client_id] || params[:contractor_id]
             @reviews = Review.all
+                if params["status"]["high_to_low"]
+                    @reviews = Review.high_to_low
+                elsif params["status"]["low_to_high"]
+                    @reviews = Review.low_to_high
+                end
         end
     end
 
